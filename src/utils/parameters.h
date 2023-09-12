@@ -8,7 +8,10 @@ const float pi = 3.1416;
 const float g = 9.81;       // m/s^2
 const float a2= 1.7439e-07;
 const float a1=3.9258e-11;
-const float fl=1.7571e-08;
+const float kl=1.7571e-08;
+const float kd=1.4064e-10;
+
+
 
 // Quadcopter dimensions
 const float m = 30.0e-3;    // kg
