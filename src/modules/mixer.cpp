@@ -18,12 +18,14 @@ Mixer::Mixer() : motor_1(MOTOR1), motor_2(MOTOR2), motor_3(MOTOR3), motor_4(MOTO
 
 void Mixer::actuate(float f_t, float tau_phi, float tau_theta, float tau_psi)
 {
-    mixer(f_t, tau_phi, tau_theta, tau_psi);
-    motor_1 = control_motor(omega_1);
-    motor_2 = control_motor(omega_2);
-    motor_3 = control_motor(omega_3);
-    motor_4 = control_motor(omega_4);
-
+    if ( armed ) 
+    { 
+        mixer(f_t, tau_phi, tau_theta, tau_psi);
+        motor_1 = control_motor(omega_1);
+        motor_2 = control_motor(omega_2);
+        motor_3 = control_motor(omega_3);
+        motor_4 = control_motor(omega_4);
+    }
 }
 
 //Convert total trust force (N) and torque (N.m) to angular velocities (rad/s)
@@ -68,4 +70,14 @@ float Mixer::control_motor(float omega)
 {
     float PWM=1.7439e-07*(omega*omega)+3.9258e-11*omega;
     return PWM;
+}
+
+void Mixer::arm()
+{
+    armed = true;
+}
+
+void Mixer::disarm()
+{
+    armed = false;
 }
