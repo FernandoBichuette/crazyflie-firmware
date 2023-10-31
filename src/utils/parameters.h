@@ -11,6 +11,8 @@ const float a1=3.9258e-11;
 const float kl=1.7571e-08;
 const float kd=1.4064e-10;
 const float dt = 2e-3;
+const float wc=1.0; //rad
+const float alpha=(wc*dt)/(1+wc*dt);
 
 
 
