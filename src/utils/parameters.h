@@ -14,6 +14,29 @@ const float dt = 2e-3;
 const float wc=1.0; //rad
 const float alpha=(wc*dt)/(1+wc*dt);
 
+const float Os=0.005;
+const float ts_theta=0.3;
+const float ts_psi=0.6;
+
+const float zeta = abs(log(Os))/sqrt(pi*pi+log(Os)*log(Os));
+const float wn_theta = 4.0/(zeta*ts_theta);
+
+const float wn_psi = 4.0/(zeta*ts_psi);
+
+const float kp_theta=pow(wn_theta,2);
+const float kd_theta=2.0*zeta*wn_theta;
+
+const float kp_phi=kp_theta;
+const float kd_phi=kd_theta;
+
+const float kp_psi=pow(wn_psi,2);;
+const float kd_psi=2.0*zeta*wn_psi;
+
+
+
+const float amortecimento=sqrt(2)/2;
+const float l1=wc*wc;
+const float l2=2*amortecimento*wc;
 
 
 // Quadcopter dimensions

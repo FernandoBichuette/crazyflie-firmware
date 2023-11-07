@@ -33,6 +33,7 @@ void Mixer::actuate(float f_t, float tau_phi, float tau_theta, float tau_psi)
 float positive_or_zero(float x) {
     return x > 0 ? x : 0;
 }
+
 void Mixer::mixer(float f_t, float tau_phi, float tau_theta, float tau_psi)
 {
     omega_1 = sqrt(positive_or_zero(
@@ -79,5 +80,6 @@ void Mixer::arm()
 
 void Mixer::disarm()
 {
+    actuate(0, 0, 0, 0);
     armed = false;
 }
