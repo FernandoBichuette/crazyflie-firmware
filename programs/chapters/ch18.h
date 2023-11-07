@@ -16,32 +16,27 @@ Ticker tic , tic_range ;
 bool flag , flag_range ;
 
 // Define callback functions
-void callback () { flag = true ; }
-void callback_range () { flag_range = true ; }
+void callback() { flag = true ; }
+void callback_range() { flag_range = true ; }
 
 // Main program
-int main ()
-{
-// Initialize estimator objects
-att_est . init () ;
-ver_est . init () ;
-// Initialize interrupts
-tic . attach (& callback , dt);
-tic_range . attach (& callback_range , dt_range ) ;
-while ( true )
-{
-if ( flag )
-{
-flag = false ;
-att_est . estimate () ;
-ver_est . predict (0.0) ;
-if ( flag_range )
-{
-flag_range = false ;
-ver_est . correct ( att_est .phi , att_est . theta );
-serial . printf ("z [m ]:%6.2 f | w [m/s ]:%6.2 f \n", ver_est .z, ver_est .w);
-}
-}
-
-}
+int main(){
+    // Initialize estimator objects
+    att_est.init() ;
+    ver_est.init() ;
+    // Initialize interrupts
+    tic.attach(& callback , dt);
+    tic_range.attach(& callback_range , dt_range ) ;
+    while( true ){
+        if( flag ){
+            flag = false ;
+            att_est.estimate () ;
+            ver_est.predict (0.0) ;
+            if( flag_range ){
+                flag_range = false ;
+                ver_est.correct ( att_est .phi , att_est . theta );
+                serial.printf ("z [m ]:%6.2 f | w [m/s ]:%6.2 f \n", ver_est .z, ver_est .w);
+            }
+        }
+    }
 }
