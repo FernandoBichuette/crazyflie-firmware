@@ -13,6 +13,8 @@ const float kd=1.4064e-10;
 const float dt = 2e-3;
 const float wc=1.0; //rad
 const float alpha=(wc*dt)/(1+wc*dt);
+const float dt_range=5e-2;
+
 
 const float Os=0.005;
 const float ts_theta=0.3;
@@ -33,10 +35,10 @@ const float kp_psi=pow(wn_psi,2);;
 const float kd_psi=2.0*zeta*wn_psi;
 
 
-
+const float wc_ver = 10.0;
 const float amortecimento=sqrt(2)/2;
-const float l1=wc*wc;
-const float l2=2*amortecimento*wc;
+const float l1=wc_ver*wc_ver;
+const float l2=2.0*amortecimento*wc_ver;
 
 
 // Quadcopter dimensions
