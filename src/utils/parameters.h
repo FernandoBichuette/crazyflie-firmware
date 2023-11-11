@@ -12,6 +12,7 @@ const float kl=1.7571e-08;
 const float kd=1.4064e-10;
 const float dt = 2e-3;
 const float wc=1.0; //rad
+
 const float alpha=(wc*dt)/(1+wc*dt);
 const float dt_range=5e-2;
 
@@ -45,7 +46,8 @@ const float kd_vertical = 3.4225;
 
 
 const float sigma=2*tan(42/2)/420*dt;
-
+const float wc_estimador=50;
+const float l_estimador=(wc_estimador*dt_range)/(1+wc_estimador*dt_range);
 
 // Quadcopter dimensions
 const float m = 30.0e-3;    // kg
