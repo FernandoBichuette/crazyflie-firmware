@@ -40,6 +40,9 @@ const float amortecimento=sqrt(2)/2;
 const float l1=wc_ver*wc_ver;
 const float l2=2.0*amortecimento*wc_ver;
 
+const float kp_vertical = 5.8567;
+const float kd_vertical = 3.4225;
+
 
 // Quadcopter dimensions
 const float m = 30.0e-3;    // kg
