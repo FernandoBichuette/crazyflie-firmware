@@ -44,6 +44,9 @@ const float kp_vertical = 5.8567;
 const float kd_vertical = 3.4225;
 
 
+const float sigma=2*tan(42/2)/420*dt;
+
+
 // Quadcopter dimensions
 const float m = 30.0e-3;    // kg
 const float I_xx = 16.0e-6; // kg.m^2
