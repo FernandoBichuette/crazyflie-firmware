@@ -19,5 +19,5 @@
 #include "src/modules/vertical_estimator.h"
 #include "src/modules/vertical_controller.h"
 #include "src/modules/horizontal_estimator.h"
-
+#include "src/modules/horizontal_controller.h"
 #endif

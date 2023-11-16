@@ -49,6 +49,16 @@ const float sigma=2.0*tan((42.0*pi/180.0)/2.0)/(420.0*dt);
 const float wc_estimador=50.0;
 const float l_estimador=wc_estimador;
 
+
+
+const float ts_horizontal=2;
+
+
+const float wn_horizontal = 4.0/(zeta*ts_horizontal);
+
+const float kp_horizontal=pow(wn_horizontal,2);
+const float kd_horizontal=2.0*zeta*wn_horizontal;
+
 // Quadcopter dimensions
 const float m = 30.0e-3;    // kg
 const float I_xx = 16.0e-6; // kg.m^2
