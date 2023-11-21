@@ -23,10 +23,16 @@ void callback_range () { flag_range = true ; }
 int main ()
 {
 // Set references
-float z_r = 0.5;
+float z_r = 0.0;
 float x_r = 0.0;
 float y_r = 0.0;
 float psi_r = 0.0;
+
+float d=1.5;
+float h=0.5;
+float to=2;
+float tv=5;
+float tp=2;
 // Initialize estimators objects
 att_est.init () ;
 ver_est.init () ;
@@ -38,12 +44,13 @@ tic_range.attach (& callback_range , dt_range ) ;
 mixer.arm () ;
 tim.start();
 t=tim.read();
-while ( abs (att_est.phi) <= pi /4.0 && abs (att_est.theta) <= pi /4.0 && abs (att_est.p) <= 4.0* pi && abs (att_est.q) <= 4.0* pi && abs(att_est.r) <= 4.0* pi)
+while ( abs (att_est.phi) <= pi /4.0 && abs (att_est.theta) <= pi /4.0 && abs (att_est.p) <= 4.0* pi && abs (att_est.q) <= 4.0* pi && abs(att_est.r) <= 4.0* pi && (t < 10))
 {
+    
     if (flag)
     {
         flag = false;
-        t=tim.read();
+        
         att_est.estimate();
         ver_est.predict(ver_cont.f_t);
         if (flag_range)
@@ -60,6 +67,39 @@ while ( abs (att_est.phi) <= pi /4.0 && abs (att_est.theta) <= pi /4.0 && abs (a
         ver_cont.control (z_r , ver_est.z, ver_est.w);
         att_cont.control ( hor_cont.phi_r , hor_cont.theta_r ,psi_r , att_est.phi , att_est.theta , att_est.psi , att_est.p, att_est.q, att_est.r) ;
         mixer.actuate ( ver_cont.f_t /( cos ( att_est.phi) *cos( att_est.theta ) ) ,att_cont.tau_phi , att_cont.tau_theta , att_cont.tau_psi );
+        t = tim.read();
+    }
+    if(t<2){
+        
+        z_r=(h/to)*t;
+        x_r=0.0;
+        flag = true;
+        flag_range = true;
+    }
+
+
+    else if (t < 7) {
+
+        z_r=h;
+        x_r=(d/tv)*t-(d/tv)*to;
+        flag = true;
+        flag_range = true;
+
+    } 
+    else if (t < 10) {
+
+        z_r=-(h/tp)*t+(h/tp)*(to+tv+tp);
+        x_r=d;
+        flag = true;
+        flag_range = true;
+
+    }
+
+    else {
+
+        z_r=0;
+        x_r=d;
+
     }
 }
 
